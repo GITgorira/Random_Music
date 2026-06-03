@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Music</title>
+</head>
+<body>
+    <button id="playButton">音楽を再生</button>
 
+    <script>
+        //音楽ファイルのURL（またはファイルパス）のリスト
+    const musicList = [
+      'music/sound1.mp3',
+      'music/sound2.mp3',
+      'music/sound3.mp3'
+    ];
+
+    const button = document.getElementById('playButton');
+    let currentAudio = null; //現在再生中の音楽を管理する変数
+    let timeoutId = null; //タイムアウトIDを保管する変数
+
+    button.addEventListener('click', () => {
+      //もし既に音楽が再生中なら、一度止める
+      if (currentAudio) {
+        currentAudio.pause();
+      }
+      
+      //既に設定されているタイムアウトをクリア
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      //musicListからランダムに1つのファイルを選ぶ
+      const randomIndex = Math.floor(Math.random() * musicList.length);
+      const randomMusic = musicList[randomIndex];
+
+      //選んだ音楽を再生する
+      currentAudio = new Audio(randomMusic);
+      currentAudio.play();
+      
+      //30秒後に音楽を強制終了する
+      timeoutId = setTimeout(() => {
+        currentAudio.pause();
+        currentAudio.currentTime = 0; //再生位置をリセット
+      }, 30000); //30秒
+    });
+  </script>
+  
+</body>
+</html>
