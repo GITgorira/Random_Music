@@ -5,46 +5,45 @@
     <title>Music</title>
 </head>
 <body>
-    <button id="playButton">音楽を再生</button>
+    <button id="playButton">ランダムで音楽再生</button>
 
     <script>
-        //音楽ファイルのURL（またはファイルパス）のリスト
-    const musicList = [
-      'music/sound1.mp3',
-      'music/sound2.mp3',
-      'music/sound3.mp3'
+        // URLのリスト
+    const urlList = [
+      'https://gitgorira.github.io/money/',
+      'https://gitgorira.github.io/Money-site/'
     ];
 
     const button = document.getElementById('playButton');
-    let currentAudio = null; //現在再生中の音楽を管理する変数
-    let timeoutId = null; //タイムアウトIDを保管する変数
+    let externalWindow = null; // 外部ウィンドウの参照を保管
+    let timeoutId = null; // タイムアウトIDを保管する変数
 
     button.addEventListener('click', () => {
-      //もし既に音楽が再生中なら、一度止める
-      if (currentAudio) {
-        currentAudio.pause();
+      // もし既にウィンドウが開いていたら、一度閉じる
+      if (externalWindow) {
+        externalWindow.close();
       }
       
-      //既に設定されているタイムアウトをクリア
+      // 既に設定されているタイムアウトをクリア
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
 
-      //musicListからランダムに1つのファイルを選ぶ
-      const randomIndex = Math.floor(Math.random() * musicList.length);
-      const randomMusic = musicList[randomIndex];
+      // urlListからランダムに1つのURLを選ぶ
+      const randomIndex = Math.floor(Math.random() * urlList.length);
+      const randomUrl = urlList[randomIndex];
 
-      //選んだ音楽を再生する
-      currentAudio = new Audio(randomMusic);
-      currentAudio.play();
+      // 選んだURLを新しいウィンドウで開く
+      externalWindow = window.open(randomUrl, 'external', 'width=800,height=600');
       
-      //30秒後に音楽を強制終了する
+      // 30秒後にこのサイトに戻す
       timeoutId = setTimeout(() => {
-        currentAudio.pause();
-        currentAudio.currentTime = 0; //再生位置をリセット
-      }, 30000); //30秒
+        if (externalWindow) {
+          externalWindow.close(); // 外部ウィンドウを閉じる
+        }
+        window.focus(); // 元のウィンドウにフォーカス
+      }, 10000); // 10秒
     });
   </script>
   
 </body>
-</html>
