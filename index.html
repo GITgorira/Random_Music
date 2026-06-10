@@ -18,6 +18,13 @@
             margin: clamp(4px, 14vw, 16px);
             cursor: pointer;
         }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
     </style>
 </head>
 <body>
@@ -26,9 +33,10 @@
     <p>「ランダム再生」ボタンから曲を30秒程度聞いた後は、</p>
     <p>下部の「フォームに飛ぶ」ボタンを押して質問に答えてください。</p>
     <br><br>
-    <button id="playButton">ランダム再生</button>
-    <br><br>
-    <button id="formButton">フォームに飛ぶ</button>
+    <div class="button-container">
+        <button id="playButton">ランダム再生</button>
+        <button id="formButton">フォームに飛ぶ</button>
+    </div>
 
     <script> // URLのリスト
     const urlList = [
