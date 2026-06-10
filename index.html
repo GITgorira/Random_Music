@@ -10,11 +10,10 @@
     </style>
 </head>
 <body>
-    <button id="playButton">ランダムで音楽再生</button>
+    <button id="playButton">ランダム再生</button>
     <button id="formButton">フォームに飛ぶ</button>
 
-    <script>
-        // URLのリスト
+    <script> // URLのリスト
     const urlList = [
       'https://www.youtube.com/watch?v=SX_ViT4Ra7k&t=60',
       'https://gitgorira.github.io/Money-site/'
@@ -24,23 +23,19 @@
     const formButton = document.getElementById('formButton');
     let externalWindow = null; // 外部ウィンドウの参照を保管
 
-    button.addEventListener('click', () => {
-      // もし既にウィンドウが開いていたら、一度閉じる
+    button.addEventListener('click', () => { // 重複して開かせない
       if (externalWindow) {
         externalWindow.close();
       }
 
-      // urlListからランダムに1つのURLを選ぶ
-      const randomIndex = Math.floor(Math.random() * urlList.length);
+      const randomIndex = Math.floor(Math.random() * urlList.length); // urlListからランダムに1つのURLを選ぶ
       const randomUrl = urlList[randomIndex];
 
-      // 選んだURLを新しいウィンドウで開く
-      externalWindow = window.open(randomUrl, 'external', 'width=800,height=600');
+      externalWindow = window.open(randomUrl, 'external', 'width=800,height=600'); // 選んだURLを新しいウィンドウで開く
     });
 
     formButton.addEventListener('click', () => {
-      // Google Formのリンク（URLを適切なものに変更してください）
-      window.open('https://forms.gle/example', '_blank');
+      window.open('https://forms.gle/example', '_blank'); //googleformへ
     });
   </script>
   
