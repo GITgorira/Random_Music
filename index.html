@@ -6,6 +6,28 @@
     <style>
         h1 {
             color: black;
+            font-size: clamp(24px, 20vw, 36px);
+        }
+        p {
+            color: black;
+            font-size: clamp(24px, 18vw, 32px);
+        }
+        button {
+            font-size: clamp(28px, 18vw, 32px);
+            padding: clamp(16px, 20vw, 24px) clamp(28px, 40vw, 64px);
+            margin: clamp(8px, 14vw, 24px);
+            cursor: pointer;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+        h1 {
+            color: black;
             font-size: clamp(24px, 20vw, 28px);
         }
         p {
@@ -14,7 +36,7 @@
         }
         button {
             font-size: clamp(28px, 18vw, 28px);
-            padding: clamp(16px, 16vw, 24px) clamp(32px, 20vw, 40px);
+            padding: clamp(16px, 16vw, 24px) clamp(40px, 20vw, 40px);
             margin: clamp(8px, 14vw, 16px);
             cursor: pointer;
         }
@@ -24,6 +46,7 @@
             align-items: center;
             justify-content: center;
             gap: 20px;
+        }
         }
     </style>
 </head>
