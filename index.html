@@ -11,6 +11,7 @@
 </head>
 <body>
     <button id="playButton">ランダムで音楽再生</button>
+    <button id="formButton">フォームに飛ぶ</button>
 
     <script>
         // URLのリスト
@@ -20,18 +21,13 @@
     ];
 
     const button = document.getElementById('playButton');
+    const formButton = document.getElementById('formButton');
     let externalWindow = null; // 外部ウィンドウの参照を保管
-    let timeoutId = null; // タイムアウトIDを保管する変数
 
     button.addEventListener('click', () => {
       // もし既にウィンドウが開いていたら、一度閉じる
       if (externalWindow) {
         externalWindow.close();
-      }
-      
-      // 既に設定されているタイムアウトをクリア
-      if (timeoutId) {
-        clearTimeout(timeoutId);
       }
 
       // urlListからランダムに1つのURLを選ぶ
@@ -40,15 +36,13 @@
 
       // 選んだURLを新しいウィンドウで開く
       externalWindow = window.open(randomUrl, 'external', 'width=800,height=600');
-      
-      // 30秒後にこのサイトに戻す
-      timeoutId = setTimeout(() => {
-        if (externalWindow) {
-          externalWindow.close(); // 外部ウィンドウを閉じる
-        }
-        window.focus(); // 元のウィンドウにフォーカス
-      }, 10000); // 10秒
+    });
+
+    formButton.addEventListener('click', () => {
+      // Google Formのリンク（URLを適切なものに変更してください）
+      window.open('https://forms.gle/example', '_blank');
     });
   </script>
   
 </body>
+</html>
