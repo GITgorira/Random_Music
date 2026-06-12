@@ -93,6 +93,7 @@
     const button = document.getElementById('playButton');
     const formButton = document.getElementById('formButton');
     let externalWindow = null; // 外部ウィンドウの参照を保管
+    let selectedSongIndex = null; // 選ばれた曲の番号を保管
 
     button.addEventListener('click', () => { // 重複して開かせない
       if (externalWindow) {
@@ -100,13 +101,26 @@
       }
 
       const randomIndex = Math.floor(Math.random() * urlList.length); // urlListからランダムに1つのURLを選ぶ
+      selectedSongIndex = randomIndex + 1; // 番号を1から始まるように調整（0ベースを1ベースに変更）
       const randomUrl = urlList[randomIndex];
 
       externalWindow = window.open(randomUrl, 'external', 'width=800,height=600'); // 選んだURLを新しいウィンドウで開く
     });
 
     formButton.addEventListener('click', () => {
-      window.open('https://docs.google.com/forms/d/e/1FAIpQLSecyY_eLpv8jL65BBregBx1emAiIrZBOsBp4ZX_risK_hMXhw/viewform?usp=header'); //googleformへ
+      // GoogleフォームのベースURL
+      const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSecyY_eLpv8jL65BBregBx1emAiIrZBOsBp4ZX_risK_hMXhw/viewform';
+      
+      // 曲番号が選ばれている場合はクエリパラメータを追加
+      let formUrl = formBaseUrl;
+      if (selectedSongIndex !== null) {
+        // entry.〇〇の〇〇部分を、Googleフォームの実際のentry IDに
+        formUrl = `${formBaseUrl}?usp=header&entry.123456=${selectedSongIndex}`;
+      } else {
+        formUrl = `${formBaseUrl}?usp=header`;
+      }
+      
+      window.open(formUrl);
     });
   </script>
   
