@@ -19,6 +19,10 @@
             margin: clamp(8px, 14vw, 16px);
             cursor: pointer;
         }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         .button-container {
             display: flex;
             flex-direction: column;
@@ -41,6 +45,10 @@
             margin: clamp(8px, 14vw, 16px);
             cursor: pointer;
         }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         .button-container {
             display: flex;
             flex-direction: column;
@@ -62,7 +70,7 @@
     <br><br>
     <div class="button-container">
         <button id="playButton">ランダム再生</button>
-        <button id="formButton">フォームに飛ぶ</button>
+        <button id="formButton" disabled>フォームに飛ぶ</button>
     </div>
 
     <script> // URLのリスト
@@ -105,9 +113,21 @@
       const randomUrl = urlList[randomIndex];
 
       externalWindow = window.open(randomUrl, 'external', 'width=800,height=600'); // 選んだURLを新しいウィンドウで開く
+      
+      // フォームボタンを有効化
+      formButton.disabled = false;
+      
+      // プレイボタンを無効化
+      button.disabled = true;
     });
 
     formButton.addEventListener('click', () => {
+      // selectedSongIndexがnullの場合は処理を中止
+      if (selectedSongIndex === null) {
+        alert('先に「ランダム再生」ボタンを押してください。');
+        return;
+      }
+
       // GoogleフォームのベースURL
       const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSecyY_eLpv8jL65BBregBx1emAiIrZBOsBp4ZX_risK_hMXhw/viewform';
       
