@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: black;
+            color: white;
+            padding: clamp(12px, 8vw, 20px) clamp(16px, 6vw, 24px);
+            text-align: center;
+        }
+
+        header h1 {
+            color: white;
+            font-size: clamp(18px, 10vw, 28px);
+        }
+
         h1 {
             color: black;
             font-size: clamp(8px, 10vw, 20px);
@@ -60,6 +78,10 @@
     </style>
 </head>
 <body>
+    <header>
+        <h1>ランダム再生ページ</h1>
+    </header>
+
     <h1>手順</h1>
     <p>「ランダムな曲を再生」ボタンを押してください。</p>
     <p>ランダムな曲のサイトに飛びます。</p>
