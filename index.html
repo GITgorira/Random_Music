@@ -73,44 +73,45 @@
         <button id="formButton" disabled>アンケートへ進む</button>
     </div>
 
-    <script> // URLのリスト
-    const urlList = [
-        'https://youtube.com/watch?v=wyGr9EFuxSE&si=AGodJy0PP7260Qop&t=129',
-        'https://youtube.com/watch?v=XNURRmk8YrQ&si=ZibFdnDhchDmV8fe&t=125',
-        'https://youtube.com/watch?v=p3V8-bBsN2U&si=l6E-KnbxSplAhE8p&t=53',
-        'https://youtube.com/watch?v=Aw2kcRynJnE&si=b23IV3ai52XJyv4H&t=92',
-        'https://youtube.com/watch?v=hSdcy2_vtaQ&si=-SLfehx1KXeuKZq&t=50',
-        'https://www.youtube.com/watch?v=IPBXepn5jTA&t=76',
-        'https://www.youtube.com/watch?v=Gcvk4zcu25c&t=90',
-        'https://www.youtube.com/watch?v=1IlTeOMCNJU&t=26',
-        'https://www.youtube.com/watch?v=VtqnjYMdCAQ&t=30',
-        'https://youtu.be/GXh57ZcnyYg?si=AuLclAvddkWrr1Gb&t=70', //10
-        'https://youtube.com/watch?v=5GxpyQvxllA&si=KvSH-1f-J-sw7W6U&t=68',
-        'https://youtube.com/watch?v=MXKk8lxWGkc&si=mMUTNosgOTa3H9rT&t=42',
-        'https://youtube.com/watch?v=KftLSF5mAjE&si=ljs2caz9cuWJ9GFn&t=67',
-        'https://youtube.com/watch?v=q24ZWYA_xgo&si=OqENmHgwYShvM4ub&t=57',
-        'https://youtube.com/watch?v=sRj0Tpfwlr0&si=66RhzZn8nBy-NDdq&t=107',
-        'https://youtube.com/watch?v=Fmz-JgkX1y4&si=LT-r_sdEMklnHj8d&t=60',
-        'https://www.youtube.com/watch?v=2v8iq3tI0gM&t=250',
-        'https://www.youtube.com/watch?v=Y_VyszSZdMc&t=101',
-        'https://www.youtube.com/watch?v=SIuF37EWaLU&t=60',
-        'https://www.youtube.com/watch?v=ZeIGVnkYX04&t=40', //20
-        'https://www.youtube.com/watch?v=K8IHUMUq1Ac&t=48',
+    <script>
+    // URLと曲名のマッピング
+    const songList = [
+        { url: 'https://youtube.com/watch?v=wyGr9EFuxSE&si=AGodJy0PP7260Qop&t=129', name: '曲名1' },
+        { url: 'https://youtube.com/watch?v=XNURRmk8YrQ&si=ZibFdnDhchDmV8fe&t=125', name: '曲名2' },
+        { url: 'https://youtube.com/watch?v=p3V8-bBsN2U&si=l6E-KnbxSplAhE8p&t=53', name: '曲名3' },
+        { url: 'https://youtube.com/watch?v=Aw2kcRynJnE&si=b23IV3ai52XJyv4H&t=92', name: '曲名4' },
+        { url: 'https://youtube.com/watch?v=hSdcy2_vtaQ&si=-SLfehx1KXeuKZq&t=50', name: '曲名5' },
+        { url: 'https://www.youtube.com/watch?v=IPBXepn5jTA&t=76', name: '曲名6' },
+        { url: 'https://www.youtube.com/watch?v=Gcvk4zcu25c&t=90', name: '曲名7' },
+        { url: 'https://www.youtube.com/watch?v=1IlTeOMCNJU&t=26', name: '曲名8' },
+        { url: 'https://www.youtube.com/watch?v=VtqnjYMdCAQ&t=30', name: '曲名9' },
+        { url: 'https://youtu.be/GXh57ZcnyYg?si=AuLclAvddkWrr1Gb&t=70', name: '曲名10' },
+        { url: 'https://youtube.com/watch?v=5GxpyQvxllA&si=KvSH-1f-J-sw7W6U&t=68', name: '曲名11' },
+        { url: 'https://youtube.com/watch?v=MXKk8lxWGkc&si=mMUTNosgOTa3H9rT&t=42', name: '曲名12' },
+        { url: 'https://youtube.com/watch?v=KftLSF5mAjE&si=ljs2caz9cuWJ9GFn&t=67', name: '曲名13' },
+        { url: 'https://youtube.com/watch?v=q24ZWYA_xgo&si=OqENmHgwYShvM4ub&t=57', name: '曲名14' },
+        { url: 'https://youtube.com/watch?v=sRj0Tpfwlr0&si=66RhzZn8nBy-NDdq&t=107', name: '曲名15' },
+        { url: 'https://youtube.com/watch?v=Fmz-JgkX1y4&si=LT-r_sdEMklnHj8d&t=60', name: '曲名16' },
+        { url: 'https://www.youtube.com/watch?v=2v8iq3tI0gM&t=250', name: '曲名17' },
+        { url: 'https://www.youtube.com/watch?v=Y_VyszSZdMc&t=101', name: '曲名18' },
+        { url: 'https://www.youtube.com/watch?v=SIuF37EWaLU&t=60', name: '曲名19' },
+        { url: 'https://www.youtube.com/watch?v=ZeIGVnkYX04&t=40', name: '曲名20' },
+        { url: 'https://www.youtube.com/watch?v=K8IHUMUq1Ac&t=48', name: '曲名21' },
     ];
 
     const button = document.getElementById('playButton');
     const formButton = document.getElementById('formButton');
     let externalWindow = null; // 外部ウィンドウの参照を保管
-    let selectedSongIndex = null; // 選ばれた曲の番号を保管
+    let selectedSongName = null; // 選ばれた曲の名前を保管
 
     button.addEventListener('click', () => { // 重複して開かせない
       if (externalWindow) {
         externalWindow.close();
       }
 
-      const randomIndex = Math.floor(Math.random() * urlList.length); // urlListからランダムに1つのURLを選ぶ
-      selectedSongIndex = randomIndex + 1; // 番号を1から始まるように調整（0ベースを1ベースに変更）
-      const randomUrl = urlList[randomIndex];
+      const randomIndex = Math.floor(Math.random() * songList.length); // songListからランダムに1つを選ぶ
+      selectedSongName = songList[randomIndex].name; // 曲名を保管
+      const randomUrl = songList[randomIndex].url;
 
       externalWindow = window.open(randomUrl, 'external', 'width=800,height=600'); // 選んだURLを新しいウィンドウで開く
       
@@ -122,8 +123,8 @@
     });
 
     formButton.addEventListener('click', () => {
-      // selectedSongIndexがnullの場合は処理を中止
-      if (selectedSongIndex === null) {
+      // selectedSongNameがnullの場合は処理を中止
+      if (selectedSongName === null) {
         alert('先に「ランダム再生」ボタンを押してください。');
         return;
       }
@@ -131,18 +132,12 @@
       // GoogleフォームのベースURL
       const formBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSecyY_eLpv8jL65BBregBx1emAiIrZBOsBp4ZX_risK_hMXhw/viewform';
       
-      // 曲番号が選ばれている場合はクエリパラメータを追加
-      let formUrl = formBaseUrl;
-      if (selectedSongIndex !== null) {
-        // entry.〇〇の〇〇部分を、Googleフォームの実際のentry IDに
-        formUrl = `${formBaseUrl}?usp=header&entry.123456=${selectedSongIndex}`;
-      } else {
-        formUrl = `${formBaseUrl}?usp=header`;
-      }
+      // 曲名をクエリパラメータとして追加
+      const formUrl = `${formBaseUrl}?usp=header&entry.123456=${encodeURIComponent(selectedSongName)}`;
       
       window.open(formUrl);
     });
-  </script>
+    </script>
   
 </body>
 </html>
