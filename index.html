@@ -101,9 +101,9 @@
 
     <br>
     <h1>手順</h1>
-    <p>1.「ランダムな曲を再生」をクリック。</p>
-    <p>2.サビから始まる曲を聴く</p>
-    <p id="instruction3">3.「アンケートに進む」をクリックし、アンケートに答える</p>
+    <p id="instruction2">1.「ランダムな曲を再生」をクリック。</p>
+    <p id="instruction2">2.サビから始まる曲を聴く</p>
+    <p id="instruction1">3.「アンケートに進む」をクリックし、アンケートに答える</p>
     <p2>※最初の『曲選択』の画面の選択肢は変えず、ページ下部の「次へ」を押してください</p2>
     <br><br>
     <div class="button-container">
@@ -142,13 +142,17 @@
     let selectedSongName = null; // 選ばれた曲の名前を保管
 
     // ここでボタンの状態を表すフラグを持たせる
-    // true のときは該当の手順（p#instruction3）を非表示にする
+    // true のときは該当の手順（p#instruction1）を非表示にする
     let playButtonState = true;
 
     function updateInstructionVisibility() {
-      const instr = document.getElementById('instruction3');
+      const instr = document.getElementById('instruction1');
       if (!instr) return;
       instr.style.display = playButtonState ? 'none' : 'block';
+        
+      const instr = document.getElementById('instruction2');
+      if (!instr) return;
+      instr.style.display = playButtonState ? 'block' : 'none';
     }
 
     // 初期表示を反映
