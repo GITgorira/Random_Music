@@ -107,7 +107,7 @@
     </div>
     <div id="instruction_group2">
     <p>3.「アンケートに進む」をクリックし、アンケートに答える</p>
-    <p2>※最初の『曲選択』の画面の選択肢は変えず、ページ下部の「次へ」を押してください</p2>
+    <p><span style="color: red;">※最初の『曲選択』の画面の選択肢は変えず、ページ下部の「次へ」を押してください</span></p>
     </div>
     <br><br>
     <div class="button-container">
@@ -156,6 +156,7 @@
       const group2 = document.getElementById('instruction_group2');
       if (group2) {
         group2.style.display = playButtonState ? 'block' : 'none';
+      }
     }
 
     // 初期表示を反映
