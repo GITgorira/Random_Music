@@ -103,7 +103,7 @@
     <h1>手順</h1>
     <p>1.「ランダムな曲を再生」をクリック。</p>
     <p>2.サビから始まる曲を聴く</p>
-    <p>3.「アンケートに進む」をクリックし、アンケートに答える</p>
+    <p id="instruction3">3.「アンケートに進む」をクリックし、アンケートに答える</p>
     <p2>※最初の『曲選択』の画面の選択肢は変えず、ページ下部の「次へ」を押してください</p2>
     <br><br>
     <div class="button-container">
@@ -141,6 +141,19 @@
     let externalWindow = null; // 外部ウィンドウの参照を保管
     let selectedSongName = null; // 選ばれた曲の名前を保管
 
+    // ここでボタンの状態を表すフラグを持たせる
+    // true のときは該当の手順（p#instruction3）を非表示にする
+    let playButtonState = true;
+
+    function updateInstructionVisibility() {
+      const instr = document.getElementById('instruction3');
+      if (!instr) return;
+      instr.style.display = playButtonState ? 'none' : 'block';
+    }
+
+    // 初期表示を反映
+    updateInstructionVisibility();
+
     button.addEventListener('click', () => { // 重複して開かせない
       if (externalWindow) {
         externalWindow.close();
@@ -157,6 +170,10 @@
       
       // プレイボタンを無効化
       button.disabled = true;
+
+      // 状態を false にして、3番の手順を表示する
+      playButtonState = false;
+      updateInstructionVisibility();
     });
 
     formButton.addEventListener('click', () => {
